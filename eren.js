@@ -133,4 +133,31 @@ client.login(process.env.TOKEN);
 
 
 //-----------------------KOMUTLAR-----------------------\\
+const disbut = require("discord-buttons");
+const disbutpages = require("discord-embeds-pages-buttons")
 
+client.on("message", async message=>{
+if(message.author.bot || message.channel.type == "dm")return;
+if(message.content == ".yardım"){
+  //embed 1
+  const embed1 = new Discord.MessageEmbed()
+  .setColor("RANDOM")
+  .setTitle("Embed title")
+  .setDescription(`.ban\n.bansay`)
+  //embed 2
+  const embed2 = new Discord.MessageEmbed()
+  .setColor("WHITE")
+  .setTitle("Embed title")
+  .addField("Page 2", "[Invite Bot!](https://google.com/)")
+  //embed 3
+  const embed3 = new Discord.MessageEmbed()
+  .setColor("WHITE")
+  .setTitle("Embed title")
+  .addField("Page 3", "[Invite Bot!](https://google.com/)")
+//pages (add to this for more pages)
+var pages = [embed1, embed2, embed3]
+
+//embed options
+disbutpages.pages(client, message, pages, 100000, disbut, "grey", "⏩", "⏪", "❌")
+  }
+})
