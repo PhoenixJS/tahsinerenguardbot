@@ -143,21 +143,21 @@ if(message.author.bot || message.channel.type == "dm")return;
 if(message.content == ".yardım"){
   //embed 1
   const embed1 = new Discord.MessageEmbed()
-  .setColor("RANDOM")
+  .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
   .addField("Sayfa 1", ".ban\n.bansay\n.kick")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 2
   const embed2 = new Discord.MessageEmbed()
-  .setColor("RANDOM")
+  .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
   .addField("Sayfa 2", "[Invite Bot!](https://google.com/)%22")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 3
   const embed3 = new Discord.MessageEmbed()
-  .setColor("RANDOM")
+  .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
   .addField("Sayfa 3", "[Invite Bot!](https://google.com/)%22")
