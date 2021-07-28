@@ -153,7 +153,7 @@ if(message.content == ".yardım"){
   .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
-  .addField("Sayfa 2", ".eval\n.yavaşmod\n.sil\n.rol-koruma")
+  .addField("Sayfa 2", ".yavaşmod\n.sil\n.rol-koruma")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 3
   const embed3 = new Discord.MessageEmbed()
@@ -227,4 +227,62 @@ client.on("roleCreate", async role => {
     if (entry.executor.id == client.user.id) return;
   role.delete()
   }
+}) 
+/////reklamengel//////////
+//REKLAM ENGEL
+
+client.on("message", msg => {
+ const veri = db.fetch(`${msg.guild.id}.reklam`)
+ if (veri) {
+        const reklam = [".com", ".net", ".xyz", ".tk", ".pw", ".io", ".me", ".gg", "www.", "https", "http", ".gl", ".org", ".com.tr", ".biz", "net", ".rf.gd", ".az", ".party", "discord.gg", "youtube.com"];
+        if (reklam.some(word => msg.content.includes(word))) {
+          try {
+            if (!msg.member.permissions.has("BAN_MEMBERS")) {
+                  msg.delete();
+                    return msg.reply('**__Yakaladım Seni! Reklam Yasak :warning:__**').then(nordx => nordx.delete({timeout: 5000}))                          
+            
+            }              
+          } catch(err) {
+            console.log(err);
+          }
+        }
+ }
+       if(!veri) return;
+    });
+
+//REKLAM ENGEL SON
+
+////kanalkoruma////
+client.on("channelDelete", async function(channel) {
+    let rol = await db.fetch(`kanalk_${channel.guild.id}`);
+  
+  if (rol) {
+const guild = channel.guild.cache;
+let channelp = channel.parentID;
+
+  channel.clone().then(z => {
+    let kanal = z.guild.channels.find(c => c.name === z.name);
+    kanal.setParent(
+      kanal.guild.channels.find(channel => channel.id === channelp)
+      
+    );
+  });
+  }
 })
+
+//
+
+client.on("emojiDelete", async (emoji, message, channels) => {
+  let emojik = await db.fetch(`emojik_${emoji.guild.id}`)
+  if (emojik) {
+  const entry = await emoji.guild.fetchAuditLogs({ type: "EMOJI_DELETE" }).then(audit => audit.entries.first());
+  if (entry.executor.id == client.user.id) return;
+  if (entry.executor.id == emoji.guild.owner.id) return;
+  if (!emoji.guild.members.cache.get(entry.executor.id).hasPermission('ADMINISTRATOR')) {
+    
+  emoji.guild.emojis.create(`${emoji.url}`, `${emoji.name}`).catch(console.error);
+
+  
+  }
+  }
+});
