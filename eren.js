@@ -129,7 +129,7 @@ client.elevation = message => {
     if (message.author.id === ayarlar.sahip) permlvl = 4;
     return permlvl;
 };
-client.login(process.env.token)
+client.login(process.env.TOKEN);
 
 
 //-----------------------KOMUTLAR-----------------------\\
