@@ -146,7 +146,7 @@ if(message.content == ".yardım"){
   .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
-  .addField("Sayfa 1", ".ban\n.bansay\n.kick")
+  .addField("Sayfa 1", ".ban\n.bansay\n.kick\n.bot-izin")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 2
   const embed2 = new Discord.MessageEmbed()
@@ -167,3 +167,16 @@ var pages = [embed1, embed2, embed3]
 disbutpages.pages(client, message, pages, 100000, disbut, "grey", "⏩", "⏪", "❌")
   }
 })
+////yeni hesap ban//
+client.on("guildMemberAdd", async member => {
+let erenskullanici = client.users.cache.get(member.id)
+  const erensyhesapkurulus = new Date().getTime()-erenskullanici.createdAt.getTime();
+/*---------------------------*/
+    if(erensyhesapkurulus < 1296000000) {
+      member.send(`:warning: Hey Sen 2 Haftayı Aşmamış Yeni Hesap Sunucudan Banladın Bro :warning:`)
+member.guild.members.cache.get(member.id).ban({reason: `yeni hesap olma`})
+} else return;//2 haftadan kısa süre önce kurulmuş hesaba ban atar
+ 
+member.guild.owner.send(`${moment.utc(erenskullanici .createdAt).format('DD/MM/YYYY')} tarihinde yeni kurulmuş ${member.user.tag} isimli bir hesabı banladım.`)
+});
+
