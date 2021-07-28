@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = (client, message, args) => {
-  if(!message.member.roles.cache.has("808297886404182016") && !message.member.hasPermission("ADMINISTRATOR"))
+  if(!message.member.roles.cache.has("869901115196596235") && !message.member.hasPermission("ADMINISTRATOR"))
     return message.channel.send(
       "Bu komutu kullanabilmek için **Emojileri yönet** yetkisine sahip olmalısınız"
     );
