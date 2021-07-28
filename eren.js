@@ -180,5 +180,23 @@ member.guild.members.cache.get(member.id).ban({reason: `yeni hesap olma`})
 member.guild.owner.send(`${moment.utc(erenskullanici .createdAt).format('DD/MM/YYYY')} tarihinde yeni kurulmuş ${member.user.tag} isimli bir hesabı banladım.`)
 });
 /////yeni hessp ban//
-//-------------------- Küfür Engel Sistemi --------------------//
-
+//-------------------- Caps Engel Sistemi --------------------//
+client.on("message", async msg => {
+  if (msg.channel.type === "dm") return;
+  if (msg.author.bot) return;
+  if (msg.content.length > 1) {
+    if (db.fetch(`capslock_${msg.guild.id}`)) {
+      let caps = msg.content.toUpperCase();
+      if (msg.content == caps) {
+        if (!msg.member.permissions.has("ADMINISTRATOR")) {
+          if (!msg.mentions.users.first()) {
+            msg.delete();
+            return msg.channel.send(`${msg.member}, Capslock Kapat Lütfen!`).then(nordx => nordx.delete({timeout: 5000}))
+              
+          }
+        }
+      }
+    }
+  }
+});
+//-------------------- Caps Engel Sistemi --------------------//
