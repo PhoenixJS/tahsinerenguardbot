@@ -153,7 +153,7 @@ if(message.content == ".yardım"){
   .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
-  .addField("Sayfa 2", "[Invite Bot!](https://google.com/)%22")
+  .addField("Sayfa 2", ".eval\n.yavaşmod\n.sil\n.rol-koruma")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 3
   const embed3 = new Discord.MessageEmbed()
@@ -200,3 +200,31 @@ client.on("message", async msg => {
   }
 });
 //-------------------- Caps Engel Sistemi --------------------//
+
+//////////////rolkoruma///////////////////
+client.on("roleDelete", async role => {
+  let rolko = await db.fetch(`rolk_${role.guild.id}`);
+  if (rolko) { 
+         const entry = await role.guild.fetchAuditLogs({ type: "ROLE_DELETE" }).then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+  role.guild.roles.create({ data: {
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          permissions: role.permissions,
+          mentionable: role.mentionable,
+          position: role.position
+}, reason: '**__:warning: Silinen Roller Tekrar Açıldı :warning:__**'})
+  }
+})
+
+//
+
+client.on("roleCreate", async role => {
+  let rolk = await db.fetch(`rolk_${role.guild.id}`);
+  if (rolk) { 
+       const entry = await role.guild.fetchAuditLogs({ type: "ROLE_CREATE" }).then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+  role.delete()
+  }
+})
