@@ -153,16 +153,10 @@ if(message.content == ".yardım"){
   .setColor("RED")
   .setThumbnail(client.user.avatarURL())
   .setTitle("Tahsin Eren Guard Botu")
-  .addField("Sayfa 2", ".yavaşmod\n.sil\n.rol-koruma")
+  .addField("Sayfa 2", ".yavaşmod\n.sil\n.rol-koruma\n.ever-engel\n.kanal-koruma\n.reklam-engel")
   .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
-  //embed 3
-  const embed3 = new Discord.MessageEmbed()
-  .setColor("GREEN")
-  .setThumbnail(client.user.avatarURL())
-  .setTitle("Tahsin Eren Guard Botu")
-  .addField("Sayfa 3", "[Invite Bot!](https://google.com/)%22")
-  .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
-var pages = [embed1, embed2, embed3]
+
+var pages = [embed1, embed2]
 
 disbutpages.pages(client, message, pages, 100000, disbut, "grey", "⏩", "⏪", "❌")
   }
@@ -308,3 +302,44 @@ let hereengelle = await db.fetch(`hereengel_${msg.guild.id}`)
     
 //EVERYONE-HERE ENGEL SON
 
+//KÜFÜR ENGEL
+
+client.on("message", async msg => {
+ const i = await db.fetch(`${msg.guild.id}.kufur`)
+    if (i) {
+        const kufur = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
+        if (kufur.some(word => msg.content.includes(word))) {
+          try {
+            if (!msg.member.permissions.has("BAN_MEMBERS")) {
+                  msg.delete();
+                          
+                      return msg.reply('**__Heey! Küfür Yasak :warning:__**').then(nordx => nordx.delete({timeout: 5000}))
+            }              
+          } catch(err) {
+            console.log(err);
+          }
+        }
+    }
+    if (!i) return;
+});
+
+client.on("messageUpdate", async msg => {
+ const i = db.fetch(`${msg.guild.id}.kufur`)
+    if (i) {
+        const kufur = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
+        if (kufur.some(word => msg.content.includes(word))) {
+          try {
+            if (!msg.member.permissions.has("BAN_MEMBERS")) {
+                  msg.delete();
+                          
+                      return msg.reply('**__Yakaladım Seni! Küfür Yasak :x:__**').then(nordx => nordx.delete({timeout: 5000}))
+            }              
+          } catch(err) {
+            console.log(err);
+          }
+        }
+    }
+    if (!i) return;
+});
+
+//KÜFÜR ENGEL SON
