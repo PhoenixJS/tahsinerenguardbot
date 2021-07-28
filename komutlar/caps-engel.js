@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 const ayarlar = require('../ayarlar.json')
 exports.run = async (client, message, args) => {
-  if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send(`** :warning: Bu Komutu Kullana Bilmek İçin \`Mesajları Yönet\` Yetkisine Sahip Olmalısın! :warning:`)
+  if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send(`**:warning: Bu Komutu Kullana Bilmek İçin \`Mesajları Yönet\` Yetkisine Sahip Olmalısın! :warning:**`)
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
   
   if(args[0] === 'aç') {
@@ -20,11 +20,11 @@ return
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['capslockengel','capslock','capslock-engel','cl'],
+  aliases: [''],
   permLevel: 0
 };
 exports.help = {
-  name: 'capsengel',
+  name: 'capslock',
   description: 'Capslock kullanımını engeller.',
   usage: 'capslock-engelleme'
 };
