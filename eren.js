@@ -21,10 +21,19 @@ client.on('ready', async () => {
   setInterval( async () => {
     client.appInfo = await client.fetchApplication();
   }, 600);
+ client.user.setStatus("idle");
+var randomMesajlar = ["discord.gg/tahsineren","Tahsin Eren Tarafından Kodlandı","Gelişmiş Guard Botu"]
+setInterval(function() {
+    var randomMesajlar1 = randomMesajlar[Math.floor(Math.random() * (randomMesajlar.length))]
+    client.user.setActivity(`${randomMesajlar1}`);}, 3 * 30000);
   
- client.user.setActivity(`discord.gg/codework`, { type:'WATCHING' })
-  
-  console.log("CodeWork Akıyor!!")
+      console.log ('_________________________________________');
+      console.log (`Kullanıcı İsmi     : ${client.user.username}`);
+      console.log (`Sunucular          : ${client.guilds.cache.size}`);
+      console.log (`Kullanıcılar       : ${client.users.cache.size}`);
+      console.log (`Prefix             : ${ayarlar.prefix}`);
+      console.log (`Durum              : Bot Çevrimiçi!`);
+      console.log ('_________________________________________');
 });
 
 const log = message => {
@@ -120,52 +129,8 @@ client.elevation = message => {
     if (message.author.id === ayarlar.sahip) permlvl = 4;
     return permlvl;
 };
-client.login(process.env.TOKEN)
+client.login(process.env.token)
 
 
 //-----------------------KOMUTLAR-----------------------\\
 
-//KULLANICI KAYIT MESAJI\\
-
-client.on("guildMemberAdd", async member => {
-  let hgmesajı = db.fetch(`kgirismesajı_${member.guild.id}`)
-  client.channels.cache.get(hgmesajı).send(`Hoşgeldin ${member} Kayıt Olmak İçin !kayıt İsim Yaş`);
-});
-
-//KULLANICI KAYIT MESAJI SON\\
-
-
-//KULLANICI KAYIT MESAJI\\
-
-client.on("guildMemberAdd", async member => {
-  let yetkilihgmesajı = db.fetch(`yetkilikgirismesajı_${member.guild.id}`)
-  client.channels.cache.get(yetkilihgmesajı).send(`Hoşgeldin ${member} Kayıt Olmak İçin Kayıt Kanalına İsmini Yaz Ve Yetkilileri Bekle!`);
-});
-
-//KULLANICI KAYIT MESAJI SON\\
-
-  client.on("guildMemberAdd", member => { 
-  let kanal = db.fetch(`hgbbkanal_${member.guild.id}`)
-  let user = client.users.cache.get(member.id);
-  require("moment-duration-format");
-  const kurulus = new Date().getTime() - user.createdAt.getTime();  
-  const embed = new Discord.MessageEmbed()
-  var kontrol;
-if (kurulus < 1296000000) kontrol = ' **__Bu Hesap Güvenilir Değil__** '
-if (kurulus > 1296000000) kontrol = ' **__Bu Hesap Güvenilir Gözüküyor__** '
-  moment.locale("tr");
-  let codework = client.channels.cache.get(kanal);
-codework.send(`
-<a:RainbowOkGif:755739732666744843> ** Hoşgeldin! ${member} Seninle Birlikte ${member.guild.memberCount} Kişiyiz. **
-
-<a:RainbowOkGif:755739732666744843> ** Sunucuya Hoşgeldin Tagımızı Alarak Kayıt Olabilirsin. **
-
-<a:RainbowOkGif:755739732666744843> ** <@&748076408672354369> seninle ilgilenicektir. **
-
-<a:RainbowOkGif:755739732666744843> ** Hesabın Oluşturulma Tarihi:** ${moment(member.user.createdAt).format(" **YYYY __DD MMMM dddd (hh:mm:ss) __ **")} **
-
-<a:RainbowOkGif:755739732666744843> ** ${kontrol} **
-
-<a:RainbowOkGif:755739732666744843> ** __ Register Odalara Girerek Kayıt Olman Lazım Dostum . __  `)
-  
-  });
