@@ -286,3 +286,25 @@ client.on("emojiDelete", async (emoji, message, channels) => {
   }
   }
 });
+
+//EVERYONE-HERE ENGEL
+
+client.on("message", async msg => {
+  
+let hereengelle = await db.fetch(`hereengel_${msg.guild.id}`)
+ if (hereengelle == 'acik') {
+   
+      const here = ["@here", "@everyone"];
+  if (here.some(word => msg.content.toLowerCase().includes(word)) ) {
+    if (!msg.member.permissions.has("ADMINISTRATOR")) {
+      msg.delete()
+       return msg.reply('**__Yakaladım Seni! :warning: Everyone ve Here Etiketlemek Yasak :x:__**').then(nordx => nordx.delete({timeout: 5000}))
+        }
+    }
+ } else if (hereengelle == 'kapali') {
+ 
+}
+});
+    
+//EVERYONE-HERE ENGEL SON
+
