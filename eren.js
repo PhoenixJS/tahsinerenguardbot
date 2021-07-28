@@ -140,22 +140,28 @@ disbut(client);
 //Main embed
 client.on("message", async message=>{
 if(message.author.bot || message.channel.type == "dm")return;
-if(message.content == "!help"){
+if(message.content == ".yardım"){
   //embed 1
   const embed1 = new Discord.MessageEmbed()
   .setColor("RANDOM")
-  .setTitle("Embed title")
-  .addField("Sayfa 1", ".ban\n.bansay")
+  .setThumbnail(client.user.avatarURL())
+  .setTitle("Tahsin Eren Guard Botu")
+  .addField("Sayfa 1", ".ban\n.bansay\n.kick")
+  .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 2
   const embed2 = new Discord.MessageEmbed()
-  .setColor("WHITE")
-  .setTitle("Embed title")
+  .setColor("RANDOM")
+  .setThumbnail(client.user.avatarURL())
+  .setTitle("Tahsin Eren Guard Botu")
   .addField("Sayfa 2", "[Invite Bot!](https://google.com/)%22")
+  .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
   //embed 3
   const embed3 = new Discord.MessageEmbed()
-  .setColor("WHITE")
-  .setTitle("Embed title")
+  .setColor("RANDOM")
+  .setThumbnail(client.user.avatarURL())
+  .setTitle("Tahsin Eren Guard Botu")
   .addField("Sayfa 3", "[Invite Bot!](https://google.com/)%22")
+  .setFooter(`${message.author.tag} istedi!`, message.author.displayAvatarURL({dynamic: true, format: "png"}))
 var pages = [embed1, embed2, embed3]
 
 disbutpages.pages(client, message, pages, 100000, disbut, "grey", "⏩", "⏪", "❌")
