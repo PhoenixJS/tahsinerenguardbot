@@ -179,4 +179,4 @@ member.guild.members.cache.get(member.id).ban({reason: `yeni hesap olma`})
  
 member.guild.owner.send(`${moment.utc(erenskullanici .createdAt).format('DD/MM/YYYY')} tarihinde yeni kurulmuş ${member.user.tag} isimli bir hesabı banladım.`)
 });
-
+/////yeni hessp ban//
