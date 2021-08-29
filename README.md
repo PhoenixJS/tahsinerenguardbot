@@ -6,4 +6,4 @@
 
 **//TOKEN ENV KISMINDADIR GİZLİDİR RAHAT OLUN<3//**
 
-**//bazı kodlar alınmıştır iziniyle iyi günler <3/**
+**//Tahsin Eren Developments Tarafından Kodlanmıştır/**
